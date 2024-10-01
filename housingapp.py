@@ -66,35 +66,3 @@ def set_data(redis_data: RedisData):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-# @app.get("/test_redis")
-# def test_redis():
-#     logger.debug("Received request to /test_redis")
-#     try:
-#         redis_client.ping()
-#         logger.info("Redis connection successful")
-#         return {"message": "Redis connection successful"}
-#     except Exception as e:
-#         logger.error(f"Redis connection failed: {str(e)}")
-#         raise HTTPException(status_code=500, detail="Redis connection error")
-
-# @app.get("/data/{key}")
-# def get_data(key: str):
-#     logger.debug(f"Received request to get data for key: {key}")
-#     if not redis_client.exists(key):
-#         logger.warning(f"Key '{key}' not found")
-#         raise HTTPException(status_code=404, detail=f"Key '{key}' not found")
-
-#     data = redis_client.hgetall(key)
-#     if not data:
-#         logger.warning(f"No data found for key '{key}'")
-#         raise HTTPException(status_code=404, detail=f"No data found for key '{key}'")
-
-#     logger.info(f"Data retrieved for key '{key}': {data}")
-#     return {key: data}
-
-# @app.post("/data/")
-# def set_data(redis_data: RedisData):
-#     logger.debug(f"Received request to set data: {redis_data}")
-#     redis_client.hset(redis_data.key, redis_data.field, redis_data.value)
-#     logger.info(f"Field '{redis_data.field}' set for key '{redis_data.key}'")
-#     return {"message": f"Field '{redis_data.field}' set for key '{redis_data.key}'"}
